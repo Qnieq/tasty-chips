@@ -31,7 +31,7 @@ export function Home() {
                     </div>
                     <div className="border-[0.1px] border-black flex">
                         <button className="font-poppins font-semibold">
-                            See all item
+                            See all ite
                             <ArrowRight color="#fff" />
                         </button>
                     </div>
