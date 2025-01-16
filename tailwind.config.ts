@@ -10,7 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
-        foreground: "var(--foreground)",
+      },
+      fontFamily: {
+        chonburi: ['Chonburi', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
