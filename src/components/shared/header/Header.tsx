@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Header() {
     return (
-        <section className="flex items-center justify-center w-full h-[100px] sticky top-0 border-b-[2px] border-b-white">
+        <section className="flex items-center justify-center w-full h-[100px] sticky top-0 border-b-[1px] border-b-white z-10">
             <div className="flex items-center justify-between w-[1440px] h-[56px] pr-[80px] pl-[80px]">
                 <Image src={"logo.svg"} width={200} height={56} alt="logo" />
                 <ul className="flex gap-[47px] font-poppins">

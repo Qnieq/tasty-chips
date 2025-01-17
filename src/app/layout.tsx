@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Chonburi, Poppins } from "next/font/google"
 import { Toaster } from 'sonner'
 import "./globals.css";
+import { chonburi, poppins } from "@/utils/fonts";
+import { MouseFollower } from "@/components/UI/mouse-follower/MouseFollower";
+import { SmoothScrolling } from "./SmoothScrolling";
 
-const chonburi = Chonburi({ subsets: ["latin"], weight: ["400"] })
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,14 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${chonburi.className} ${poppins.className} antialiased`}
+        className={`${chonburi} ${poppins} antialiased`}
       >
         {children}
         <Toaster
-            theme="light"
-            position="bottom-right"
-            duration={3000}
-          />
+          theme="light"
+          position="bottom-right"
+          duration={3000}
+        />
+        <MouseFollower />
       </body>
     </html>
   );

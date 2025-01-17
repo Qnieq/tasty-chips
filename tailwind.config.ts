@@ -12,8 +12,8 @@ const config: Config = {
         background: "var(--background)",
       },
       fontFamily: {
-        chonburi: ['Chonburi', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
+        chonburi: ['var(--font-chonburi)'],
+        poppins: ['var(--font-poppins)'],
       },
     },
   },
