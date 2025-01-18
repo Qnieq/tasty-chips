@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import * as THREE from "three";
@@ -10,7 +10,14 @@ interface IChipsPacketModel {
 
 export function ChipsPacketModel({ url, scrollY }: IChipsPacketModel) {
     const { scene } = useGLTF(url);
+
     const modelRef = useRef<THREE.Mesh>(null);
+
+    const [modelPosition, setModelPosition] = useState({
+        x: -1.2,
+        y: window.innerWidth >= 1440 ? -2.1 : -window.innerWidth / 1440 - 2,
+        z: window.innerWidth >= 1440 ? 1 : window.innerWidth / 1440
+    })
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
@@ -28,48 +35,71 @@ export function ChipsPacketModel({ url, scrollY }: IChipsPacketModel) {
             }
         };
 
+        const handleResize = () => {
+            if (modelRef.current) {
+
+                if (scrollY >= 100) setModelPosition((val) => ({ ...val, x: 0 }))
+
+                gsap.to(modelRef.current.position, {
+                    x: modelPosition.x,
+                    y: modelPosition.y,
+                    z: modelPosition.z,
+                    duration: 0.5,
+                    ease: "power1.out",
+                });
+            }
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("resize", handleResize);
 
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("resize", handleResize);
         };
     }, [scrollY]);
 
     useEffect(() => {
         if (modelRef.current && scrollY >= 100) {
 
-            if (scrollY / 500 <= 6.3) {
+            const formula_rotation = (((Math.PI * 2) * scrollY - 100) / ((window.innerHeight * 3 + 868) - 100 - 20)) / 0.70
+
+            if (formula_rotation <= Math.PI * 2) {
+
                 gsap.to(modelRef.current.rotation, {
                     x: 0.1,
-                    y: scrollY / 500,
+                    y: formula_rotation,
                     z: 0,
                     duration: 1.5,
                     ease: "power1.out",
                 });
             }
 
+            setModelPosition((val) => ({ ...val, x: 0 }))
+
             gsap.to(modelRef.current.position, {
                 x: 0,
                 y: -2.1,
-                z: 1,
+                z: modelPosition.z,
                 duration: 1.5,
                 ease: "power1.out",
             });
 
-        } else if (modelRef.current) {
+        } else if (modelRef.current && scrollY < 100) {
             gsap.to(modelRef.current.rotation, {
                 x: 0.1,
                 y: 0,
                 z: -0.35,
                 duration: 1.5,
-                delay: 0,
                 ease: "power1.out",
             });
 
+            setModelPosition((val) => ({ ...val, x: -1.2, y: -2.1 }))
+
             gsap.to(modelRef.current.position, {
-                x: -1.2,
-                y: -2.1,
-                z: 1,
+                x: modelPosition.x,
+                y: modelPosition.y,
+                z: modelPosition.z,
                 duration: 1.5,
                 ease: "power1.out",
             });

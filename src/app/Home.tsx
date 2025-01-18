@@ -7,11 +7,12 @@ import { HomeHeroSection } from "@/components/screens/home/HomeHeroSection";
 import { SmoothScrolling } from "./SmoothScrolling";
 import { Statistic } from "@/components/screens/home/Statistic";
 
+
 export function Home() {
     return (
         <>
             <SmoothScrolling />
-            <section className="flex flex-col items-center w-full h-[867px] bg-[#B1464A] overflow-hidden relative">
+            <section className="flex flex-col items-center w-full h-[868px] bg-[#B1464A] overflow-hidden relative">
                 <Header />
                 <HomeHeroSection />
                 <Image
