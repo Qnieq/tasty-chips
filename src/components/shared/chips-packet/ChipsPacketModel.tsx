@@ -62,7 +62,7 @@ export function ChipsPacketModel({ url, scrollY }: IChipsPacketModel) {
     useEffect(() => {
         if (modelRef.current && scrollY >= 100) {
 
-            const formula_rotation = (((Math.PI * 2) * scrollY - 100) / ((window.innerHeight * 3 + 868) - 100 - 20)) / 0.70
+            const formula_rotation = (((Math.PI * 2) * scrollY - 100) / (((window.innerHeight / 2) * 3 + 868) - 100 - 20)) / 0.70
 
             if (formula_rotation <= Math.PI * 2) {
 

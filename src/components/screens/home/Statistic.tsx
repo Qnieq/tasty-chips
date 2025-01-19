@@ -63,7 +63,7 @@ function AnimatedBlock({ amount, desc, mark, side }: AnimatedBlockProps) {
         <div
             ref={container}
             className={cn(
-                `h-[100dvh] w-full flex items-center justify-center transition-opacity duration-500`,
+                `h-[50dvh] w-full flex items-center justify-center transition-opacity duration-500`,
                 scrollingValue >= 0.5 ? "opacity-100" : "opacity-0"
             )}
         >

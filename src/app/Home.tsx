@@ -6,6 +6,9 @@ import { ChipsPacketScene } from "@/components/shared/chips-packet/ChipsPacketSc
 import { HomeHeroSection } from "@/components/screens/home/HomeHeroSection";
 import { SmoothScrolling } from "./SmoothScrolling";
 import { Statistic } from "@/components/screens/home/Statistic";
+import { Overview } from "@/components/screens/home/Overview";
+import { Titling } from "@/components/UI/titling/Titling";
+import { NotificationDialog } from "@/components/screens/home/NotificationDialog";
 
 
 export function Home() {
@@ -29,15 +32,22 @@ export function Home() {
                     preserveAspectRatio="none"
                 >
                     <path
-                        fill="#fefefb"
+                        fill="#f4f4f4"
                         d="M0,10 C25,0 75,0 100,10 L100,20 L0,20 Z"
                     />
                 </svg>
             </section>
+            <Titling text="World class awesome Chips" color="#b1464a" />
             <div className="absolute top-5 w-full h-full z-1 pointer-events-none">
                 <ChipsPacketScene />
             </div>
             <Statistic />
+            <div className="h-[25dvh]"></div>
+            <Overview />
+            <div className="h-[200dvh]">
+                <NotificationDialog message="Привет! Это ваше уведомление 🚀" />
+            </div>
+
         </>
 
     );

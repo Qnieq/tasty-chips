@@ -24,16 +24,19 @@ export function ChipsPacketScene() {
     }, []);
 
     useEffect(() => {
-        // Анимация с GSAP
-        gsap.to('#chipsPacketCanvas', {
-            y: scrollY, // Перемещаем canvas по оси Y
-            ease: 'power1.out', // Плавное движение
-            duration: 0.3, // Время анимации
-        });
+        if ((((Math.PI * 2) * scrollY - 100) / (((window.innerHeight / 2) * 3 + 868) - 100 - 20)) / 0.70 <= Math.PI * 2) {
+            gsap.to('#chipsPacketCanvas', {
+                y: scrollY, // Перемещаем canvas по оси Y
+                ease: 'power1.out', // Плавное движение
+                duration: 0.3, // Время анимации
+            });
+        }
+
+
     }, [scrollY]); // Эффект срабатывает при изменении scrollY
 
     return (
-        <Canvas camera={{ position: [0, 0,5.7] }} id="chipsPacketCanvas"
+        <Canvas camera={{ position: [0, 0, 5.7] }} id="chipsPacketCanvas"
             style={{
                 position: 'absolute'
             }}>

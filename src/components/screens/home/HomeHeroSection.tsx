@@ -1,4 +1,5 @@
 import { ButtonTransparent } from "@/components/UI/button-transparent/ButtonTransparent";
+import { Titling } from "@/components/UI/titling/Titling";
 import { ArrowRight, MoveRight } from "lucide-react";
 import Image from "next/image";
 
@@ -8,9 +9,7 @@ export function HomeHeroSection() {
     return (
         <div className="max-w-[1440px] min-w-[320px] w-full z-10">
             <div className="flex flex-col items-center justify-start w-full h-full pt-[20px]">
-                <h1 className="text-[6em] text-white font-chonburi">
-                    Testy Chips
-                </h1>
+                <Titling text="Testy Chips" color="white" />
                 <div className="flex w-full h-full items-start justify-between pl-[80px] pr-[80px]  pt-8">
                     <div className="flex flex-col gap-10 ">
                         <div className="flex items-center justify-start gap-2">
