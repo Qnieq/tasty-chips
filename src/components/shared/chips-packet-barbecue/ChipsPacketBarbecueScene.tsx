@@ -1,11 +1,11 @@
 import { Canvas } from "@react-three/fiber";
-import { ChipsPacketModel } from "./ChipsPacketModel";
-import { ChipsPacketLight } from "./ChipsPacketLight";
-import { useEffect, useRef, useState } from "react";
+import { ChipsPacketBarbecueModel } from "./ChipsPacketBarbecueModel";
+import { ChipsPacketBarbecueLight } from "./ChipsPacketBarbecueLight";
+import { CSSProperties, useEffect, useState } from "react";
 import * as THREE from "three"
 import gsap from "gsap";
 
-export function ChipsPacketScene() {
+export function ChipsPacketBarbecueScene({ url, position }: { url: string, position: CSSProperties['position'] }) {
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -25,23 +25,18 @@ export function ChipsPacketScene() {
 
     useEffect(() => {
         if ((((Math.PI * 2) * scrollY - 100) / (((window.innerHeight / 2) * 3 + 868) - 100 - 20)) / 0.70 <= Math.PI * 2) {
-            gsap.to('#chipsPacketCanvas', {
-                y: scrollY, // Перемещаем canvas по оси Y
-                ease: 'power1.out', // Плавное движение
-                duration: 0.3, // Время анимации
-            });
+
         }
 
-
-    }, [scrollY]); // Эффект срабатывает при изменении scrollY
+    }, [scrollY]);
 
     return (
-        <Canvas camera={{ position: [0, 0, 5.7] }} id="chipsPacketCanvas"
+        <Canvas camera={{ position: [0, 0, 5.7] }} id="chipsPacketBarbecueCanvas"
             style={{
-                position: 'absolute'
+                position: position
             }}>
-            <ChipsPacketLight />
-            <ChipsPacketModel url="/models/chips-packet-Barbecue.glb" scrollY={scrollY} />
+            <ChipsPacketBarbecueLight />
+            <ChipsPacketBarbecueModel url={url} scrollY={scrollY} />
         </Canvas >
     );
 }

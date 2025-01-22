@@ -3,8 +3,8 @@
 }
 
 .models {
-    width: clamp(400px, 38vw, 1000px);
-    height: clamp(400px, 38vw, 1000px);
+    width: clamp(400px, 38vw, 700px) !important;
+    height: clamp(400px, 38vw, 700px) !important;
 
     .streak {
         position: absolute;

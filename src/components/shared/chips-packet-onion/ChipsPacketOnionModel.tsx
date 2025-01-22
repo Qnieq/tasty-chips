@@ -8,7 +8,7 @@ interface IChipsPacketModel {
     scrollY: number;
 }
 
-export function ChipsPacketModel({ url, scrollY }: IChipsPacketModel) {
+export function ChipsPacketOnionModel({ url, scrollY }: IChipsPacketModel) {
     const { scene } = useGLTF(url);
 
     const modelRef = useRef<THREE.Mesh>(null);

@@ -2,13 +2,13 @@
 
 import { Header } from "@/components/shared/header/Header"
 import Image from "next/image";
-import { ChipsPacketScene } from "@/components/shared/chips-packet/ChipsPacketScene";
+import { ChipsPacketOnionScene } from "@/components/shared/chips-packet-onion/ChipsPacketOnionScene";
 import { HomeHeroSection } from "@/components/screens/home/HomeHeroSection";
 import { SmoothScrolling } from "./SmoothScrolling";
 import { Statistic } from "@/components/screens/home/Statistic";
 import { Overview } from "@/components/screens/home/Overview";
 import { Titling } from "@/components/UI/titling/Titling";
-import { NotificationDialog } from "@/components/screens/home/NotificationDialog";
+import { Suspense } from "react";
 
 
 export function Home() {
@@ -39,15 +39,13 @@ export function Home() {
             </section>
             <Titling text="World class awesome Chips" color="#b1464a" />
             <div className="absolute top-5 w-full h-full z-1 pointer-events-none">
-                <ChipsPacketScene />
+                <Suspense fallback={<div>Loading</div>}>
+                    <ChipsPacketOnionScene position="absolute" url="/models/chips-packet-onion.glb" />
+                </Suspense>
             </div>
             <Statistic />
             <div className="h-[25dvh]"></div>
             <Overview />
-            <div className="h-[200dvh]">
-                <NotificationDialog message="Привет! Это ваше уведомление 🚀" />
-            </div>
-
         </>
 
     );
