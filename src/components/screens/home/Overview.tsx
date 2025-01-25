@@ -1,6 +1,6 @@
 import { Titling } from "@/components/UI/titling/Titling";
 import { scroll, useScroll } from "framer-motion";
-import { forwardRef, MutableRefObject, Suspense, useEffect, useRef, useState } from "react";
+import { Dispatch, forwardRef, MutableRefObject, SetStateAction, Suspense, useEffect, useRef, useState } from "react";
 import styles from "./Home.module.scss"
 import cn from "clsx"
 import Image from "next/image";
@@ -12,45 +12,61 @@ const models = ["/chips/1.png", "/chips/2.png", "/chips/4.png", "/chips/3.png", 
 export function Overview() {
     const imgGroupContainerRef = useRef<HTMLDivElement | null>(null);
     const imgGroupRef = useRef<HTMLDivElement | null>(null);
-    const imgContainerRef = useRef<HTMLDivElement | null>(null);
+    const modelRef = useRef<HTMLDivElement | null>(null);
+
+    const [modelWidth, setModelWidth] = useState<number>(0)
+
+    const [scrollProgress, setScrollProgress] = useState<number>(0)
 
     useEffect(() => {
-        const imgGroup = imgGroupRef.current;
-        const imgGroupContainer = imgGroupContainerRef.current;
-        const imgContainer = imgContainerRef.current
+        const model = modelRef.current
 
-        if (imgGroup && imgGroupContainer && imgContainer) {
-
-            scroll(
-                (progress: number) => {
-                    const imgContainerWidth = imgContainer.offsetWidth;
-                    const imgGroupWidth = imgGroup.offsetWidth
-                    imgGroup.style.transform = `translateX(-${progress * (((imgGroupWidth / 2) + (imgContainerWidth / 2)) + 80)}px)`;
-                },
-                { target: imgGroupContainer, offset: ["start -0.1", "end 1.3"] }
-            );
-
+        if (model) {
+            setModelWidth((v) => (v - v) + model.offsetWidth)
+            console.log(modelWidth)
         }
-    }, []);
+    }, [modelRef])
+
 
     return (
-        <section ref={imgGroupContainerRef} className="w-full h-[300dvh] relative bg-[#b1464a]">
-            <div className="pl-[80px]">
-                <Titling text="Our Product" color="#fff" />
-            </div>
-            <div className="w-auto h-[100dvh] sticky top-[25dvh] overflow-x-hidden">
-                <div ref={imgGroupRef} className="flex flex-shrink-0 w-fit h-[100dvh] gap-[80px] pl-[80px] relative">
-                    {models.map((modelData, index) => (
-                        <ImgContainer modelData={modelData} ref={imgContainerRef} imgGroupContainerRef={imgGroupContainerRef} />
-                    ))}
-                    <Suspense fallback={<div>Loading</div>}>
-                        <div className={cn("flex flex-shrink-0 items-center justify-center border-[#ffffff] border-2  rounded-[60px] pointer-events-none relative", styles.models)}>
-                            <ChipsPacketBarbecueScene position="absolute" url="/models/chips-packet-Barbecue.glb" />
+        <>
+            <section
+                ref={imgGroupContainerRef}
+                className={cn(`w-full bg-[#b1464a] h-[500dvh] relative`, styles.img_group_container)}
+            >
+                <div className="absolute bottom-0 left-0 w-full h-[500dvh] bg-black opacity-0 z-10" id="dark"></div>
+                <div className="flex items-center h-[100dvh] sticky top-0  overflow-hidden">
+                    <div ref={imgGroupRef} className="flex items-center h-full w-fit">
+                        <div className="pl-[80px] absolute top-0">
+                            <Titling text="Our Product" color="#fff" />
                         </div>
-                    </Suspense>
+                        {models.map((modelData, index) => (
+                            <ImgContainer
+                                key={index}
+                                modelRef={modelRef}
+                                modelData={modelData}
+                                imgGroupContainerRef={imgGroupContainerRef}
+                                imgGroupRef={imgGroupRef}
+                                setScrollProgress={setScrollProgress}
+                            />
+                        ))}
+                        <div className="absolute flex items-center w-full h-full">
+                            <div
+                                style={{
+                                    marginLeft: `${(modelWidth * models.length) + (80 * models.length) + 80}px`,
+                                }}
+                                ref={modelRef}
+                                className={cn("flex flex-shrink-0 items-center  justify-center rounded-[60px] border-[#ffffff] border-2", styles.models)}
+                            >
+                                <Suspense fallback={<div>Loading</div>}>
+                                    <ChipsPacketBarbecueScene scrollProgress={scrollProgress} url="/models/chips-packet-Barbecue.glb" />
+                                </Suspense>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 }
 
@@ -59,61 +75,89 @@ export function Overview() {
 interface IImgContainer {
     modelData: string
     imgGroupContainerRef: MutableRefObject<HTMLDivElement | null>
+    setScrollProgress: Dispatch<SetStateAction<number>>
+    imgGroupRef: MutableRefObject<HTMLDivElement | null>
+    modelRef: MutableRefObject<HTMLDivElement | null>
 }
 
-export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({ modelData, imgGroupContainerRef }, ref) => {
+export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
+    modelData,
+    imgGroupContainerRef,
+    imgGroupRef,
+    modelRef,
+    setScrollProgress
+}, ref) => {
 
     const imgContainerRef = useRef<HTMLDivElement | null>(null);
     const [lastScrollProgress, setLastScrollProgress] = useState(0);
     const { scrollYProgress } = useScroll({
         target: imgGroupContainerRef,
-        offset: ["start -0.1", "end 1.3"],
+        offset: ["start -0.1", "end 2.3"],
     });
 
     useEffect(() => {
         const handleScrollChange = (currentScroll: number) => {
-            if (imgContainerRef.current) {
-                const delta = currentScroll - lastScrollProgress;
-                const skewAngle = delta * 150;
-                if (delta == 0 || delta == currentScroll) {
-                    imgContainerRef.current.style.transform = `skewX(0deg)`;
-                } else {
-                    imgContainerRef.current.style.transform = `skewX(${skewAngle}deg)`;
-                }
-                setLastScrollProgress(currentScroll);
+            const imgGroup = imgGroupRef.current;
+            const imgContainer = imgContainerRef.current;
+            const model = modelRef.current;
+
+            if (!imgContainer || !imgGroup) return;
+
+            const imgContainerWidth = imgContainer.offsetWidth;
+            const imgGroupWidth = imgGroup.offsetWidth;
+
+            const delta = currentScroll - lastScrollProgress;
+
+            const skewAngle = delta * 300;
+
+            const translateXValue = -(currentScroll * (((imgGroupWidth / 2) + (imgContainerWidth)) + 240));
+
+            const animRefs = [model, imgContainer]
+
+            setScrollProgress(currentScroll)
+
+            for (let index = 0; index < animRefs.length; index++) {
+                gsap.fromTo(
+                    animRefs[index],
+                    {
+                        skewX: skewAngle,
+                        translateX: translateXValue,
+                    },
+                    {
+                        skewX: 0,
+                        translateX: translateXValue,
+                        duration: delta === 0 || delta === currentScroll ? 0.5 : 0.1,
+                        ease: "power1.out",
+                    }
+                );
             }
+
+
+            setLastScrollProgress(currentScroll);
         };
 
-        scrollYProgress.on("change", handleScrollChange);
+        const unsubscribe = scrollYProgress.on("change", handleScrollChange);
 
         return () => {
-            scrollYProgress.stop();
+            unsubscribe();
         };
     }, [lastScrollProgress, scrollYProgress]);
 
     return (
         <div
-            ref={ref}
+            ref={imgContainerRef}
             className={cn(
-                "flex flex-shrink-0 rounded-[60px] relative",
-                styles.models
+                "flex flex-shrink-0 rounded-[60px] border-[#ffffff] border-2 overflow-hidden ml-[80px]",
+                styles.images
             )}
         >
-            <div
-                ref={imgContainerRef}
-                className={cn(
-                    "flex flex-shrink-0 border-[#ffffff] border-2 overflow-hidden rounded-[60px] relative transition-transform duration-200 ease-out",
-                    styles.models
-                )}
-            >
-                <Image
-                    alt=""
-                    src={modelData}
-                    width={1000}
-                    height={1000}
-                    className={cn("object-cover", styles.img)}
-                />
-            </div>
+            <Image
+                alt=""
+                src={modelData}
+                width={1000}
+                height={1000}
+                className={cn("object-cover", styles.img)}
+            />
         </div>
     )
 })

@@ -2,20 +2,11 @@
     font-size: clamp(1rem, 5vw, 5rem);
 }
 
-.models {
+.images {
     width: clamp(400px, 38vw, 700px) !important;
     height: clamp(400px, 38vw, 700px) !important;
-
-    .streak {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200%;
-        height: 50px;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
-        transform: translate(-50%, -50%) rotate(45deg);
-        pointer-events: none;
-        z-index: 2;
-        filter: blur(10px);
-    }
+}
+.models {
+    width: clamp(400px, 38vw, 700px);
+    height: clamp(400px, 38vw, 700px);
 }

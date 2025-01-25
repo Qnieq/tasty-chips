@@ -12,6 +12,7 @@
     "@barba/core": "^2.10.3",
     "@react-three/drei": "^9.121.1",
     "@react-three/fiber": "^8.17.12",
+    "@react-three/rapier": "^1.5.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.0",
     "gsap": "^3.12.7",

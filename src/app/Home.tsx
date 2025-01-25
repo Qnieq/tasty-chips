@@ -9,6 +9,7 @@ import { Statistic } from "@/components/screens/home/Statistic";
 import { Overview } from "@/components/screens/home/Overview";
 import { Titling } from "@/components/UI/titling/Titling";
 import { Suspense } from "react";
+import { TransitionToBlack } from "@/components/screens/home/TransitionToBlack";
 
 
 export function Home() {
@@ -46,6 +47,7 @@ export function Home() {
             <Statistic />
             <div className="h-[25dvh]"></div>
             <Overview />
+            <TransitionToBlack />
         </>
 
     );

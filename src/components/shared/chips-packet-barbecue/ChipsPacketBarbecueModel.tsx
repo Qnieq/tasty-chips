@@ -13,50 +13,61 @@ export function ChipsPacketBarbecueModel({ url, scrollY }: IChipsPacketBarbecueM
 
     const modelRef = useRef<THREE.Mesh>(null);
 
-    const [modelPosition, setModelPosition] = useState({
-        x: -1.2,
-        y: window.innerWidth >= 1440 ? -2.1 : -window.innerWidth / 1440 - 2,
-        z: window.innerWidth >= 1440 ? 1 : window.innerWidth / 1440
-    })
-
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            const x = (event.clientX / window.innerWidth) * 2 - 1;
-            const y = -(event.clientY / window.innerHeight) * 2 + 1;
+        if (modelRef.current) {
+            const rotationY = -(scrollY * 0.004);
+            const rotationZ = -(scrollY * 0.001);
 
-            if (modelRef.current && scrollY < 100) {
+            const positionX = (scrollY * 0.009);
+            const positionY = (scrollY * 0.001) - 2;
 
+            const scale3D = (scrollY * 0.005);
+            console.log(positionX)
+            // Анимация вращения
+            if (scrollY >= 100) {
+                gsap.to(modelRef.current.rotation, {
+                    y: rotationY <= -3 ? -3 : rotationY,
+                    z: rotationZ <= -1.5 ? -1.5 : rotationZ,
+                });
+
+                // Анимация позиции
+                gsap.to(modelRef.current.position, {
+                    x: positionX >= 12.5 ? 12.5 : positionX,
+                    y: positionY <= -2 ? -2 : positionY,
+                });
+
+                gsap.to(modelRef.current.scale, {
+                    x: scale3D >= 6 ? 6 : scale3D + 1,
+                    y: scale3D >= 6 ? 6 : scale3D + 1,
+                    z: scale3D >= 6 ? 6 : scale3D + 1
+                })
+            } else if (scrollY < 100) {
+
+                gsap.to(modelRef.current.rotation, {
+                    y: 0.1,
+                    z: 0,
+                });
+
+                // Анимация позиции
+                gsap.to(modelRef.current.position, {
+                    x: 0,
+                    y: -2,
+                });
+
+                gsap.to(modelRef.current.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1
+                })
             }
-        };
-
-        const handleResize = () => {
-            if (modelRef.current) {
-
-                if (scrollY >= 100) setModelPosition((val) => ({ ...val, x: 0 }))
-
-            }
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("resize", handleResize);
-        };
-    }, [scrollY]);
-
-    useEffect(() => {
-        if (modelRef.current && scrollY >= 100) {
-
-
         }
-    }, [scrollY])
+    }, [scrollY]);
 
 
     return (
         <mesh
             ref={modelRef}
+            scale={[1, 1, 1]}
             position={[0, -2, 1]}
             rotation={[0.1, 0, 0]}
         >
