@@ -23,7 +23,6 @@ export function Overview() {
 
         if (model) {
             setModelWidth((v) => (v - v) + model.offsetWidth)
-            console.log(modelWidth)
         }
     }, [modelRef])
 

@@ -22,7 +22,6 @@ export function ChipsPacketBarbecueModel({ url, scrollY }: IChipsPacketBarbecueM
             const positionY = (scrollY * 0.001) - 2;
 
             const scale3D = (scrollY * 0.005);
-            console.log(positionX)
             // Анимация вращения
             if (scrollY >= 100) {
                 gsap.to(modelRef.current.rotation, {
