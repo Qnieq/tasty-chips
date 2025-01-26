@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import cn from "clsx"
-import styles from "./GridWithMouseEffect.module.scss"
-import gsap from "gsap";
 
-export function GridWithMouseEffect() {
+export function GridWithMouseEffect({ children }: { children: React.ReactNode }) {
     const gridRef = useRef<HTMLDivElement>(null);
     const [gradient, setGradient] = useState<string>(`linear-gradient(rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
-                          linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
-                          radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 20%)`);
+                                                        linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
+                                                        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 20%)`);
 
     useEffect(() => {
         const grid = gridRef.current;
@@ -23,8 +20,8 @@ export function GridWithMouseEffect() {
             const yPercentage = (y / height) * 100;
 
             const newGradient = `linear-gradient(rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
-                                                     linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
-                                                     radial-gradient(circle at ${xPercentage}% ${yPercentage}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 20%)`;
+                                linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0.05rem, transparent 0.05rem), 
+                                radial-gradient(circle at ${xPercentage}% ${yPercentage}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 20%)`;
 
             setGradient(newGradient);
         };
@@ -39,10 +36,7 @@ export function GridWithMouseEffect() {
     return (
         <div
             ref={gridRef}
-            className={cn(
-                "absolute top-50 left-0 z-20 w-full h-[100dvh] bg-transparent overflow-hidden pointer-events-none",
-                styles.grid_background
-            )}
+            className="absolute top-50 left-0 z-10 w-full h-[100dvh] bg-transparent overflow-hidden pointer-events-none"
             style={{
                 backgroundImage: gradient,
                 backgroundSize: "2rem 2rem, 2rem 2rem, 100% 100%",
@@ -50,6 +44,7 @@ export function GridWithMouseEffect() {
                 backgroundBlendMode: "color-dodge",
             }}
         >
+            {children}
         </div>
     );
 }

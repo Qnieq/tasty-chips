@@ -7,27 +7,24 @@ import { useMemo, useReducer } from "react"
 import { shuffle } from "gsap"
 import { Physics } from "@react-three/rapier"
 
-interface SpheresSceneProps extends CanvasProps {
-  // Дополнительные пропсы, если необходимо
-}
 
 
 
-export function SpheresScene(props: SpheresSceneProps) {
+export function SpheresScene() {
   const accents = ['white'] // Пример возможных акцентов, можно расширить
   const [accent, click] = useReducer((state) => ++state % accents.length, 0)
 
   const shuffle = (accent = 0): SphereProps[] => [
-    { color: '', opacity: 0.21, transparent: true},
-    { color: '', opacity: 0.63, transparent: true},
-    { color: '', opacity: 0.76, transparent: true},
-    { color: '', opacity: 0.5, transparent: true},
-    { color: '', opacity: 0.28, transparent: true},
-    { color: '', opacity: 0.83, transparent: true},
-    { color: '', opacity: 0.9, transparent: true},
-    { color: '', opacity: 0.73, transparent: true},
-    { color: '', opacity: 0.53, transparent: true},
-    { color: '', opacity: 0.93, transparent: true},  
+    { color: '', opacity: 0.21, transparent: true },
+    { color: '', opacity: 0.63, transparent: true },
+    { color: '', opacity: 0.76, transparent: true },
+    { color: '', opacity: 0.5, transparent: true },
+    { color: '', opacity: 0.28, transparent: true },
+    { color: '', opacity: 0.83, transparent: true },
+    { color: '', opacity: 0.9, transparent: true },
+    { color: '', opacity: 0.73, transparent: true },
+    { color: '', opacity: 0.53, transparent: true },
+    { color: '', opacity: 0.93, transparent: true },
 
   ];
   // Типизируем connectors как массив объектов с нужными пропсами для Sphere
@@ -41,7 +38,6 @@ export function SpheresScene(props: SpheresSceneProps) {
       dpr={[1, 1.5]}
       gl={{ antialias: false }}
       camera={{ position: [0, 0, 30], fov: 17.5, near: 10, far: 40 }}
-      {...props}
     >
       <color attach="background" args={['#000']} />
       <Physics /*debug*/ timeStep="vary" gravity={[0, 0, 0]}>

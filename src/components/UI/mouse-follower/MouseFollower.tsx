@@ -12,8 +12,8 @@ export function MouseFollower() {
                 gsap.to(circleRef.current, {
                     x: event.clientX - 15,
                     y: event.clientY - 15,
-                    duration: 0.7, // Скорость анимации
-                    ease: "power2.out", // Плавность
+                    duration: 0.7, 
+                    ease: "power2.out", 
                 });
             }
         };
@@ -28,7 +28,7 @@ export function MouseFollower() {
     return (
         <div
             ref={circleRef}
-            className="fixed top-0 left-0 w-[30px] h-[30px] border-2 border-[#505050] rounded-full bg-transparent pointer-events-none z-50"
+            className="fixed top-0 left-0 w-[35px] h-[35px] border-2 border-[#505050] rounded-full bg-transparent pointer-events-none z-50"
         />
     );
 }
