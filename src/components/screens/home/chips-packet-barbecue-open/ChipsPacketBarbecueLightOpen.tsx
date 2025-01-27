@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
 import * as THREE from "three"
 
-export function ChipsPacketBarbecueLight() {
+export function ChipsPacketBarbecueLightOpen() {
     const lightRef = useRef<THREE.DirectionalLight | null>(null);
 
     useFrame(({ camera }) => {

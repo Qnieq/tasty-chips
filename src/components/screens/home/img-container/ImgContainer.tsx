@@ -8,7 +8,6 @@ import gsap from "gsap"
 interface IImgContainer {
     modelData: string
     imgGroupContainerRef: MutableRefObject<HTMLDivElement | null>
-    setScrollProgress: Dispatch<SetStateAction<number>>
     imgGroupRef: MutableRefObject<HTMLDivElement | null>
     modelRef: MutableRefObject<HTMLDivElement | null>
 }
@@ -18,7 +17,6 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
     imgGroupContainerRef,
     imgGroupRef,
     modelRef,
-    setScrollProgress
 }, ref) => {
 
     const imgContainerRef = useRef<HTMLDivElement | null>(null);
@@ -46,8 +44,6 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
             const translateXValue = -(currentScroll * (((imgGroupWidth / 2) + (imgContainerWidth)) + 240));
 
             const animRefs = [model, imgContainer]
-
-            setScrollProgress(currentScroll)
 
             for (let index = 0; index < animRefs.length; index++) {
                 gsap.fromTo(

@@ -8,7 +8,7 @@ interface IChipsPacketBarbecueModel {
     scrollY: number;
 }
 
-export function ChipsPacketBarbecueModel({ url, scrollY }: IChipsPacketBarbecueModel) {
+export function ChipsPacketBarbecueModelClose({ url, scrollY }: IChipsPacketBarbecueModel) {
     const { scene } = useGLTF(url);
 
     const modelRef = useRef<THREE.Mesh>(null);

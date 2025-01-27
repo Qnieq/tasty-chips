@@ -10,6 +10,8 @@ import { Overview } from "@/components/screens/home/Overview";
 import { Titling } from "@/components/UI/titling/Titling";
 import { Suspense } from "react";
 import { About } from "@/components/screens/home/About";
+import { Chips } from "@/components/screens/home/Chips";
+import { Footer } from "@/components/screens/home/Footer";
 
 
 export function Home() {
@@ -47,7 +49,11 @@ export function Home() {
             <Statistic />
             <div className="h-[25dvh]"></div>
             <Overview />
-            <About />
+            <div className="w-full relative">
+                <About />
+                <Chips />
+            </div>
+            <Footer />
         </>
 
     );

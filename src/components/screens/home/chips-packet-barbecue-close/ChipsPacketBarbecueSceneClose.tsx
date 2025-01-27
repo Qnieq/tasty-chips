@@ -1,16 +1,15 @@
 import { Canvas } from "@react-three/fiber";
-import { ChipsPacketBarbecueModel } from "./ChipsPacketBarbecueModel";
-import { ChipsPacketBarbecueLight } from "./ChipsPacketBarbecueLight";
 import { CSSProperties, useEffect, useState } from "react";
 import * as THREE from "three"
 import gsap from "gsap";
+import { ChipsPacketBarbecueLightClose } from "./ChipsPacketBarbecueLightClose";
+import { ChipsPacketBarbecueModelClose } from "./ChipsPacketBarbecueModelClose";
 
 interface IChipsPacketBarbecueScene {
     url: string
-    scrollProgress: number
 }
 
-export function ChipsPacketBarbecueScene({ url, scrollProgress }: IChipsPacketBarbecueScene) {
+export function ChipsPacketBarbecueSceneClose({ url }: IChipsPacketBarbecueScene) {
     const [scrollY, setScrollY] = useState(0);
     const [calculatedHeight, setCalculatedHeight] = useState(0);
 
@@ -26,7 +25,7 @@ export function ChipsPacketBarbecueScene({ url, scrollProgress }: IChipsPacketBa
 
     // Анимация при изменении прокрутки
     useEffect(() => {
-        const canvas = document.getElementById("chipsPacketBarbecueCanvas");
+        const canvas = document.getElementById("chipsPacketBarbecueCloseCanvas");
         if (!canvas) return;
 
         const windowHeight = window.innerHeight;
@@ -48,15 +47,15 @@ export function ChipsPacketBarbecueScene({ url, scrollProgress }: IChipsPacketBa
         gsap.to("#dark", {
             opacity: calculatedHeight * 0.0007
         })
-    }, [scrollY, scrollProgress]);
+    }, [scrollY]);
 
     return (
-        <Canvas camera={{ position: [0, 0, 10] }} id="chipsPacketBarbecueCanvas"
+        <Canvas camera={{ position: [0, 0, 10] }} id="chipsPacketBarbecueCloseCanvas"
             style={{
                 position: 'absolute',
             }}>
-            <ChipsPacketBarbecueLight />
-            <ChipsPacketBarbecueModel url={url} scrollY={calculatedHeight} />
+            <ChipsPacketBarbecueLightClose />
+            <ChipsPacketBarbecueModelClose url={url} scrollY={calculatedHeight} />
         </Canvas >
     );
 }

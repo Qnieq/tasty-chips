@@ -2,8 +2,8 @@ import { Titling } from "@/components/UI/titling/Titling";
 import { Suspense, useEffect, useRef, useState } from "react";
 import styles from "./Home.module.scss"
 import cn from "clsx"
-import { ChipsPacketBarbecueScene } from "@/components/screens/home/chips-packet-barbecue/ChipsPacketBarbecueScene";
 import { ImgContainer } from "./img-container/ImgContainer";
+import { ChipsPacketBarbecueSceneClose } from "./chips-packet-barbecue-close/ChipsPacketBarbecueSceneClose";
 
 const models = ["/chips/1.png", "/chips/2.png", "/chips/4.png", "/chips/3.png", "/chips/5.png"]
 
@@ -13,8 +13,6 @@ export function Overview() {
     const modelRef = useRef<HTMLDivElement | null>(null);
 
     const [modelWidth, setModelWidth] = useState<number>(0)
-
-    const [scrollProgress, setScrollProgress] = useState<number>(0)
 
     useEffect(() => {
         const model = modelRef.current
@@ -44,7 +42,6 @@ export function Overview() {
                                 modelData={modelData}
                                 imgGroupContainerRef={imgGroupContainerRef}
                                 imgGroupRef={imgGroupRef}
-                                setScrollProgress={setScrollProgress}
                             />
                         ))}
                         <div className="absolute flex items-center w-full h-full">
@@ -56,7 +53,7 @@ export function Overview() {
                                 className={cn("flex flex-shrink-0 items-center  justify-center rounded-[60px] border-[#ffffff] border-2", styles.models)}
                             >
                                 <Suspense fallback={<div>Loading</div>}>
-                                    <ChipsPacketBarbecueScene scrollProgress={scrollProgress} url="/models/chips-packet-Barbecue.glb" />
+                                    <ChipsPacketBarbecueSceneClose url="/models/chips-packet-Barbecue-close.glb" />
                                 </Suspense>
                             </div>
                         </div>
