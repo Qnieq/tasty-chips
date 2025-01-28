@@ -29,11 +29,9 @@ export function Chips() {
     useEffect(() => {
 
         const handleScrollChangeOpen = (currentScroll: number) => {
-            console.log("open", currentScroll)
             setScrollProgressOpen(currentScroll)
         }
         const handleScrollChangeClose = (currentScroll: number) => {
-            console.log("close",currentScroll)
             setScrollProgressClose(currentScroll)
         }
 

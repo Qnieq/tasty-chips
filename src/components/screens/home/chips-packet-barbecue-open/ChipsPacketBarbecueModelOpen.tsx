@@ -22,41 +22,50 @@ export function ChipsPacketBarbecueModelOpen({ url, scrollY }: IChipsPacketBarbe
             const positionY = (601 / scrollY) - 2;
             
             const scale3D = (1400 / scrollY);
+
+            const threshold = window.innerHeight + (window.innerHeight / 4);
+
             // Анимация вращения
-            if (scrollY < 0) {
+            if (scrollY >= threshold) {
                 gsap.to(modelRef.current.rotation, {
-                    y: 0.1,
-                    z: 0,
+                    y: -0.1,
+                    z: -0.3,
+                    duration: 2,
                 });
 
                 // Анимация позиции
                 gsap.to(modelRef.current.position, {
-                    x: 0,
-                    y: -2,
+                    x: -0.5,
+                    y: -2.5,
+                    duration: 2,
                 });
 
                 gsap.to(modelRef.current.scale, {
-                    x: 1,
-                    y: 1,
-                    z: 1
+                    x: 1.6,
+                    y: 1.6,
+                    z: 1.6,
+                    duration: 2,
                 })
-            } else if (scrollY >= 0) {
+            } else if (scrollY >= 0 && scrollY < threshold) {
 
                 gsap.to(modelRef.current.rotation, {
                     y: rotationY <= -3 ? -3 : rotationY,
                     z: rotationZ <= -1.5 ? -1.5 : rotationZ,
+                    duration: 1,
                 });
 
                 // Анимация позиции
                 gsap.to(modelRef.current.position, {
                     x: positionX >= 15.5 ? 15.5 : positionX,
                     y: positionY <= -2 ? -2 : positionY,
+                    duration: 1,
                 });
 
                 gsap.to(modelRef.current.scale, {
                     x: scale3D >= 6 ? 6 : scale3D + 1,
                     y: scale3D >= 6 ? 6 : scale3D + 1,
-                    z: scale3D >= 6 ? 6 : scale3D + 1
+                    z: scale3D >= 6 ? 6 : scale3D + 1,
+                    duration: 1,
                 })
             }
         }

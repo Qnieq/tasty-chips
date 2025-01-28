@@ -3,9 +3,14 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import styles from "./Home.module.scss"
 import cn from "clsx"
 import { ImgContainer } from "./img-container/ImgContainer";
-import { ChipsPacketBarbecueSceneClose } from "./chips-packet-barbecue-close/ChipsPacketBarbecueSceneClose";
+import dynamic from "next/dynamic";
 
 const models = ["/chips/1.png", "/chips/2.png", "/chips/4.png", "/chips/3.png", "/chips/5.png"]
+
+const ChipsPacketBarbecueSceneClose = dynamic(
+    () => import("./chips-packet-barbecue-close/ChipsPacketBarbecueSceneClose").then((mod) => mod.ChipsPacketBarbecueSceneClose),
+    { ssr: false }
+  );
 
 export function Overview() {
     const imgGroupContainerRef = useRef<HTMLDivElement | null>(null);

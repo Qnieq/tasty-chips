@@ -2,19 +2,32 @@
 
 import { Header } from "@/components/shared/header/Header"
 import Image from "next/image";
-import { ChipsPacketOnionScene } from "@/components/screens/home/chips-packet-onion/ChipsPacketOnionScene";
 import { HomeHeroSection } from "@/components/screens/home/HomeHeroSection";
 import { SmoothScrolling } from "./SmoothScrolling";
 import { Statistic } from "@/components/screens/home/Statistic";
 import { Overview } from "@/components/screens/home/Overview";
 import { Titling } from "@/components/UI/titling/Titling";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { About } from "@/components/screens/home/About";
 import { Chips } from "@/components/screens/home/Chips";
 import { Footer } from "@/components/screens/home/Footer";
+import dynamic from "next/dynamic";
 
+const ChipsPacketOnionScene = dynamic(
+    () => import("@/components/screens/home/chips-packet-onion/ChipsPacketOnionScene").then((mod) => mod.ChipsPacketOnionScene),
+    { ssr: false }
+  );
 
 export function Home() {
+
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+      setIsClient(true); // Ensures this runs only on the client
+    }, []);
+  
+    if (!isClient) return null;
+
     return (
         <>
             <SmoothScrolling />

@@ -23,3 +23,13 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #1f1f1f;
 }
+
+#barba-wrapper.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#barba-wrapper {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}

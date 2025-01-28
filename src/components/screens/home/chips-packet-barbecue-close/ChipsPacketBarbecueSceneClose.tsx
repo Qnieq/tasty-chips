@@ -45,7 +45,7 @@ export function ChipsPacketBarbecueSceneClose({ url }: IChipsPacketBarbecueScene
         );
 
         gsap.to("#dark", {
-            opacity: calculatedHeight * 0.0007
+            opacity: calculatedHeight * 0.0008
         })
     }, [scrollY]);
 

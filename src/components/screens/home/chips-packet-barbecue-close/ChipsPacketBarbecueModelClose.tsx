@@ -15,8 +15,8 @@ export function ChipsPacketBarbecueModelClose({ url, scrollY }: IChipsPacketBarb
 
     useEffect(() => {
         if (modelRef.current) {
-            const rotationY = -(scrollY * 0.004);
-            const rotationZ = -(scrollY * 0.001);
+            const rotationY = -(scrollY * 0.008);
+            const rotationZ = -(scrollY * 0.002);
 
             const positionX = (scrollY * 0.009);
             const positionY = (scrollY * 0.001) - 2;

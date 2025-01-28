@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber"
 import { BallCollider, RigidBody as RigidBodyComponent, RigidBodyProps } from "@react-three/rapier"
-import { RefObject, useMemo, useRef } from "react"
+import { useMemo, useRef } from "react"
 import { easing } from 'maath'
 import * as THREE from 'three'
 

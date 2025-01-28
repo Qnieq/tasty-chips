@@ -14,7 +14,7 @@ export function ChipsPacketBarbecueSceneOpen({ url, calculatedScrollY }: IChipsP
     return (
         <Canvas camera={{ position: [0, 0, 10] }} id="chipsPacketBarbecueOpenCanvas"
             style={{
-                position: 'absolute',
+                position: 'absolute'
             }}>
             <ChipsPacketBarbecueLightOpen />
             <ChipsPacketBarbecueModelOpen url={url} scrollY={calculatedScrollY} />

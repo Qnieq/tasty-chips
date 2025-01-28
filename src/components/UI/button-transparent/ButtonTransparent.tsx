@@ -1,3 +1,4 @@
+import { toast } from "sonner"
 
 interface IButtonTransparent {
     borderColor: string
@@ -10,6 +11,13 @@ interface IButtonTransparent {
 }
 
 export function ButtonTransparent({ borderColor, children, paddingX, paddingY, textColor, width, height }: IButtonTransparent) {
+
+    const notification = () => {
+        toast.error(
+            "STOOP CLICKING!! You stupid potato, this pet project, what did you expect?"
+        )
+    }
+
     return (
         <button
             style={{
@@ -23,6 +31,7 @@ export function ButtonTransparent({ borderColor, children, paddingX, paddingY, t
                 flex items-center justify-center gap-[16px] 
                 font-poppins font-semibold border-2 
                 rounded-[10px]"
+            onClick={() => notification()}
         >
             {children}
         </button>
