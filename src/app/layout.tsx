@@ -6,7 +6,7 @@ import { MouseFollower } from "@/components/UI/mouse-follower/MouseFollower";
 import { LoadingProvider } from "@/lib/LoadingProvider";
 
 export const metadata: Metadata = {
-  title: "Testy Chips",
+  title: "Tasty Chips",
   description: "World class awesome Chips",
 };
 

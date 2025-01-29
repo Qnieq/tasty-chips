@@ -55,7 +55,7 @@ export function HomeHeroSection() {
         <div className="max-w-[1440px] min-w-[320px] w-full z-20">
             <div className="flex flex-col items-center justify-start w-full h-full pt-[20px]">
                 <div className="flex items-center justify-center p-2 overflow-hidden">
-                    <Titling ref={(el) => { elementsRef.current.testyChips = el }} text="Testy Chips" color="white" align="center" />
+                    <Titling ref={(el) => { elementsRef.current.testyChips = el }} text="Tasty Chips" color="white" align="center" />
                 </div>
                 <div style={{ padding: "0 clamp(20px, 5vw, 80px)" }} className="flex w-full h-full items-start justify-between pt-8">
                     <div style={{ gap: "clamp(12px, 3vw, 30px)" }} className="flex flex-col overflow-hidden">
