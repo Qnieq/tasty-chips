@@ -22,7 +22,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
         const body = document.body;
         if (!isLoading) {
             gsap.to(loaderRef.current, {
-                scale: 0.9,
+                scale: 0.8,
                 filter: 'brightness(0.3)',
                 ease: 'back.out',
                 duration: 1,
@@ -113,7 +113,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
             <ScrollToTop />
             <div
                 ref={loaderRef}
-                style={{ background: 'var(--background)' }}
+                style={{ background: '#e7e7e7' }}
                 className="w-full h-[100dvh] flex flex-col items-center justify-center absolute z-20 top-0 left-0"
             >
                 <Loader />
