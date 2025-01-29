@@ -67,7 +67,12 @@ function AnimatedBlock({ amount, desc, mark, side }: AnimatedBlockProps) {
                 scrollingValue >= 0.5 ? "opacity-100" : "opacity-0"
             )}
         >
-            <div className={`flex max-w-[1440px] min-w-[320px] w-full flex-col items-${side} justify-start gap-[5px]`}>
+            <div
+                style={{
+                    alignItems: `flex-${side}`
+                }}
+                className={`flex max-w-[1440px] min-w-[320px] w-full flex-col justify-start gap-[5px]`}
+            >
                 <div className="flex flex-col items-start px-[40px]">
                     <AnimationNumbers
                         numbers={amount}

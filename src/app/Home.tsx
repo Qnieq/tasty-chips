@@ -49,14 +49,14 @@ export function Home() {
                     />
                 </svg>
             </section>
-            <Titling ref={titleRef} text="World class awesome Chips" color="#b1464a" />
+            <Titling ref={titleRef} text="World class awesome Chips" color="#b1464a" align="center" />
             <div className="absolute top-5 w-full h-full z-1 pointer-events-none">
                 <Suspense fallback={<div>Loading</div>}>
                     <ChipsPacketOnionScene position="absolute" url="/models/chips-packet-onion.glb" />
                 </Suspense>
             </div>
             <Statistic />
-            <div className="h-[25dvh]"></div>
+            <div className="h-[100px]"></div>
             <Overview />
             <div className="w-full relative">
                 <About />

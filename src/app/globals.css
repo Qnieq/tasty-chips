@@ -6,10 +6,15 @@
   --background: #f4f4f4;
 }
 
+*{
+  /* border: 0.1px solid #000; */
+}
+
 body {
   background: var(--background);
   padding: 0;
   margin: 0;
+  
 }
 
 ::-webkit-scrollbar {
@@ -22,14 +27,4 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #1f1f1f;
-}
-
-#barba-wrapper.fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-#barba-wrapper {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
 }

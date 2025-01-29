@@ -28,7 +28,6 @@ export function ChipsPacketOnionScene({ url, position }: { url: string, position
                 duration: 0.3, 
             });
         }
-
     }, [scrollY]);
 
     return (

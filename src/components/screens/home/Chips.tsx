@@ -1,4 +1,4 @@
-import { useScroll, motion } from "framer-motion";
+import { useScroll } from "framer-motion";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
@@ -81,17 +81,18 @@ export function Chips() {
                 <div className="grid max-w-[2560px] w-[2560px] grid-cols-4 grid-rows-8">
                     {words.map((value, index) => (
                         <div className="w-full overflow-hidden">
-                            <motion.h1
+                            <h1
                                 key={index}
                                 id={`word-${index}`}
-                                initial={{
-                                    y: "-100%",
-                                    opacity: 0,
+                                style={{
+                                    width: "clamp(200px, 40vw, 400px)",
+                                    fontSize: "clamp(7rem, 30vw, 13rem)",
+                                    lineHeight: "clamp(100px, 30vw, 200px)"
                                 }}
-                                className="w-[400px] text-white font-poppins text-center leading-[200px] font-semibold text-[13rem]"
+                                className=" text-white font-poppins text-center leading-[200px] font-semibold"
                             >
                                 {value.word}
-                            </motion.h1>
+                            </h1>
                         </div>
                     ))}
                 </div>

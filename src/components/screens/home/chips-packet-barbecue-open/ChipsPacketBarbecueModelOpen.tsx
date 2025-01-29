@@ -36,14 +36,14 @@ export function ChipsPacketBarbecueModelOpen({ url, scrollY }: IChipsPacketBarbe
                 // Анимация позиции
                 gsap.to(modelRef.current.position, {
                     x: -0.5,
-                    y: -2.5,
+                    y: window.innerWidth >= 1000 ? -2.5 : -1,
                     duration: 2,
                 });
 
                 gsap.to(modelRef.current.scale, {
-                    x: 1.6,
-                    y: 1.6,
-                    z: 1.6,
+                    x: window.innerWidth >= 1000 ? 1.6 : 1,
+                    y: window.innerWidth >= 1000 ? 1.6 : 1,
+                    z: window.innerWidth >= 1000 ? 1.6 : 1,
                     duration: 2,
                 })
             } else if (scrollY >= 0 && scrollY < threshold) {

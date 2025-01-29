@@ -43,7 +43,8 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
 
             const skewAngle = delta * 300;
 
-            const translateXValue = -(currentScroll * (((imgGroupWidth / 2) + (imgContainerWidth)) + 240));
+            const translateXValueMore1000 = -(currentScroll * (((imgGroupWidth / 2) + (imgContainerWidth)) + 240));
+            const translateXValueLess1000 = -(currentScroll * (((imgGroupWidth / 1.5) + (imgContainerWidth)) + 440));
 
             const animRefs = [model, imgContainer]
 
@@ -52,11 +53,11 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
                     animRefs[index],
                     {
                         skewX: skewAngle,
-                        translateX: translateXValue,
+                        translateX: window.innerWidth >= 1000 ? translateXValueMore1000 : translateXValueLess1000,
                     },
                     {
                         skewX: 0,
-                        translateX: translateXValue,
+                        translateX: window.innerWidth >= 1000 ? translateXValueMore1000 : translateXValueLess1000,
                         duration: delta === 0 || delta === currentScroll ? 0.5 : 0.1,
                         ease: "power1.out",
                     }

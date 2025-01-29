@@ -55,39 +55,46 @@ export function HomeHeroSection() {
         <div className="max-w-[1440px] min-w-[320px] w-full z-20">
             <div className="flex flex-col items-center justify-start w-full h-full pt-[20px]">
                 <div className="flex items-center justify-center p-2 overflow-hidden">
-                    <Titling ref={(el) => { elementsRef.current.testyChips = el }} text="Testy Chips" color="white" />
+                    <Titling ref={(el) => { elementsRef.current.testyChips = el }} text="Testy Chips" color="white" align="center" />
                 </div>
-                <div className="flex w-full h-full items-start justify-between px-[80px] pt-8">
-                    <div className="flex flex-col gap-10 overflow-hidden">
+                <div style={{ padding: "0 clamp(20px, 5vw, 80px)" }} className="flex w-full h-full items-start justify-between pt-8">
+                    <div style={{ gap: "clamp(12px, 3vw, 30px)" }} className="flex flex-col overflow-hidden">
                         <div ref={(el) => { elementsRef.current.review = el }} className="flex items-center gap-2">
                             <div className="flex space-x-[-12px]">
                                 {avatars.map((avatar, index) => (
-                                    <div key={index} className="w-[44px] h-[44px] rounded-full overflow-hidden border-[#b1464a] border">
+                                    <div
+                                        style={{
+                                            width: "clamp(30px, 5vw, 44px)",
+                                            height: "clamp(30px, 5vw, 44px)"
+                                        }}
+                                        key={index}
+                                        className="rounded-full overflow-hidden border-[#b1464a] border"
+                                    >
                                         <Image alt={`avatar ${index + 1}`} src={avatar} width={44} height={44} className="object-cover" />
                                     </div>
                                 ))}
                             </div>
-                            <p className="text-white text-[20px]">5K+ Review</p>
+                            <p style={{ fontSize: "clamp(12px, 1vw, 20px)" }} className="text-white">5K+ Review</p>
                         </div>
                         <ButtonTransparent
                             ref={(el) => { elementsRef.current.seeAllItemsBtn = el }}
-                            width="200px"
+                            width="clamp(150px, 20vw, 200px)"
                             borderColor="#fff"
-                            paddingX="28px"
-                            paddingY="14px"
+                            paddingX="clamp(13px, 2vw, 28px)"
+                            paddingY="clamp(7px, 2vw, 14px)"
                             textColor="#fff"
                         >
                             See All Item
                             <ArrowRight color="#fff" />
                         </ButtonTransparent>
                     </div>
-                    <div className="grid grid-cols-2 grid-rows-2 items-end">
+                    <div className=" flex h-full items-center">
                         <div className="col-start-2 row-start-2 overflow-hidden">
                             <div className="flex items-center gap-4" ref={(el) => { elementsRef.current.exploreBtn = el }}>
-                                <ButtonTransparent width="80px" height="80px" borderColor="#fff" textColor="#fff">
+                                <ButtonTransparent width="clamp(40px, 10vw, 80px)" height="clamp(40px, 10vw, 80px)" borderColor="#fff" textColor="#fff">
                                     <MoveRight color="#fff" />
                                 </ButtonTransparent>
-                                <p className="text-white text-[20px] font-poppins">Explore</p>
+                                <p style={{ fontSize: "clamp(12px, 1vw, 20px)" }} className="text-white font-poppins">Explore</p>
                             </div>
                         </div>
                     </div>

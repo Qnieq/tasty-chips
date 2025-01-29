@@ -58,7 +58,7 @@ export function Header() {
             ref={headerRef}
             className="flex items-center justify-center w-full h-[100px] sticky top-0 border-b-[1px] border-b-white z-20 overflow-hidden"
         >
-            <div className="flex items-center justify-between w-[1440px] h-[56px] pr-[80px] pl-[80px]">
+            <div style={{padding: "clamp(20px, 5vw, 80px)"}} className="flex items-center justify-between w-[1440px] h-[56px]">
                 <Image ref={logoRef} src={"logo.svg"} width={200} height={56} alt="logo" />
                 <div ref={buttonsRef} className="flex gap-[20px]">
                     <button

@@ -1,19 +1,22 @@
 'use client'
 
+import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
 
 export function MouseFollower() {
     const circleRef = useRef<HTMLDivElement>(null);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        setIsClient(true);
+
         const handleMouseMove = (event: MouseEvent) => {
             if (circleRef.current) {
                 gsap.to(circleRef.current, {
                     x: event.clientX - 15,
                     y: event.clientY - 15,
-                    duration: 0.7, 
-                    ease: "power2.out", 
+                    duration: 0.7,
+                    ease: "power2.out",
                 });
             }
         };
@@ -25,6 +28,8 @@ export function MouseFollower() {
         };
     }, []);
 
+    if (!isClient || typeof window === "undefined" || window.innerWidth < 1000) return null;
+
     return (
         <div
             ref={circleRef}
@@ -32,3 +37,4 @@ export function MouseFollower() {
         />
     );
 }
+

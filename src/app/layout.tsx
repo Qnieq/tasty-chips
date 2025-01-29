@@ -24,6 +24,7 @@ export default function RootLayout({
         <LoadingProvider>
           {children}
         </LoadingProvider>
+        <MouseFollower />
         <Toaster
           theme="light"
           position="bottom-right"
@@ -31,7 +32,6 @@ export default function RootLayout({
           closeButton={true}
           pauseWhenPageIsHidden={true}
         />
-        <MouseFollower />
       </body>
     </html>
   );

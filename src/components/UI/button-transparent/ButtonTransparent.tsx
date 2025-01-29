@@ -28,7 +28,8 @@ export const ButtonTransparent = forwardRef<HTMLButtonElement, IButtonTransparen
                     padding: `${paddingY} ${paddingX}`,
                     color: textColor,
                     width: width,
-                    height: height
+                    height: height,
+                    fontSize: "clamp(12px, 2vw, 16px)"
                 }}
                 className="
                 flex items-center justify-center gap-[16px] 

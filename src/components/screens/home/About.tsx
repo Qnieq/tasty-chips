@@ -53,18 +53,23 @@ export function About() {
                 className="flex items-center justify-center sticky top-0 w-screen h-[100dvh] overflow-hidden"
             >
                 <GridWithMouseEffect>
-                    <div className="flex items-center justify-between h-[inherit] p-[100px] z-20">
+                    <div 
+                    style={{
+                        padding: "clamp(20px, 5vw, 100px)"
+                    }}
+                    className="flex items-center justify-between h-[inherit] gap-[20px] z-20"
+                    >
                         <div
                             style={{
                                 opacity: (scrollProgress - 0.5) * 10,
-                                width: 'clamp(300px, 40vw, 600px)'
+                                width: 'clamp(200px, 40vw, 600px)'
                             }}
-                            className="flex items-start w-[600px] h-full"
+                            className="flex items-start h-full"
                         >
                             <Titling font_family="poppins" weight="semibold" color="#fff" text="Let’s grow your health with our product" />
                         </div>
                         <div
-                            style={{ width: 'clamp(400px, 40vw, 600px)' }}
+                            style={{ width: 'clamp(300px, 40vw, 600px)' }}
                             className="flex flex-col items-start justify-end gap-[50px] w-[600px] h-full"
                         >
                             {texts.map((value, index) => (
@@ -75,7 +80,7 @@ export function About() {
                                     }}
                                 >
                                     <h4 style={{
-                                        fontSize: 'clamp(1.5rem, 2vw, 2.5rem)'
+                                        fontSize: 'clamp(1.3rem, 2vw, 2.5rem)'
                                     }}
                                         className="text-white font-poppins font-semibold text-[] text-left"
                                     >
@@ -83,7 +88,7 @@ export function About() {
                                     </h4>
                                     <p
                                         style={{
-                                            fontSize: 'clamp(0.8rem, 1vw, 1rem)'
+                                            fontSize: 'clamp(0.75rem, 1vw, 1rem)'
                                         }}
                                         className="text-[#afafaf] font-semibold text-[1.3rem] text-left"
                                     >

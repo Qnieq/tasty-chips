@@ -132,7 +132,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
                         transform: 'translate(-50%, -50%)',
                         backgroundColor: 'transparent',
                         pointerEvents: 'none',
-                        boxShadow: '0 0 0 100vw white',
+                        boxShadow: '0 0 0 500vw white',
                     }}
                 />
             </div>
