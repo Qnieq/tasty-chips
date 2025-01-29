@@ -1,4 +1,4 @@
-# Tasty Chips 🍟
+# 🍟 [Tasty Chips](https://tasty-chips.vercel.app)
 
 A modern web application built with Next.js and TypeScript, featuring 3D graphics and smooth animations.
 
