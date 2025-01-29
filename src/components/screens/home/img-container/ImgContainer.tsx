@@ -20,12 +20,14 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
 }, ref) => {
 
     const imgContainerRef = useRef<HTMLDivElement | null>(null);
+
     const [lastScrollProgress, setLastScrollProgress] = useState(0);
+
     const { scrollYProgress } = useScroll({
         target: imgGroupContainerRef,
         offset: ["start -0.1", "end 2.3"],
     });
-
+    
     useEffect(() => {
         const handleScrollChange = (currentScroll: number) => {
             const imgGroup = imgGroupRef.current;
@@ -33,7 +35,7 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
             const model = modelRef.current;
 
             if (!imgContainer || !imgGroup) return;
-
+            console.log(currentScroll)
             const imgContainerWidth = imgContainer.offsetWidth;
             const imgGroupWidth = imgGroup.offsetWidth;
 
@@ -70,7 +72,7 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
         return () => {
             unsubscribe();
         };
-    }, [lastScrollProgress, scrollYProgress]);
+    }, [lastScrollProgress, ]);
 
     return (
         <div

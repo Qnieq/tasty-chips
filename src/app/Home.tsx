@@ -19,7 +19,6 @@ export function Home() {
     const titleRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        // Анимация появления при загрузке
         gsap.fromTo(titleRef.current,
             { y: "100px", opacity: 0 },
             { y: "0px", opacity: 1, duration: 1, ease: "circ.out", delay: 6.2 }

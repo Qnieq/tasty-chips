@@ -79,7 +79,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
             });
 
             gsap.to(body, {
-                overflowY: 'scroll',
+                overflowY: 'auto',
                 delay: 4.1,
                 duration: 0.1,
             });

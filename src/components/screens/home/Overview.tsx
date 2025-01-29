@@ -35,15 +35,18 @@ export function Overview() {
                         <div className="pl-[80px] absolute top-0">
                             <Titling text="Our Product" color="#b1464a" />
                         </div>
-                        {models.map((modelData, index) => (
-                            <ImgContainer
-                                key={index}
-                                modelRef={modelRef}
-                                modelData={modelData}
-                                imgGroupContainerRef={imgGroupContainerRef}
-                                imgGroupRef={imgGroupRef}
-                            />
-                        ))}
+                        {imgGroupContainerRef.current && (
+                            models.map((modelData, index) => (
+                                <ImgContainer
+                                    key={index}
+                                    modelRef={modelRef}
+                                    modelData={modelData}
+                                    imgGroupContainerRef={imgGroupContainerRef}
+                                    imgGroupRef={imgGroupRef}
+                                />
+                            ))
+
+                        )}
                         <div className="absolute flex items-center w-full h-full">
                             <div
                                 style={{
