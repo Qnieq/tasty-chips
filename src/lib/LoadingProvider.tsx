@@ -17,9 +17,9 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const { progress } = useProgress();
-    const body = document.body;
-    body.style.overflow = 'hidden';
+
     useEffect(() => {
+        const body = document.body;
         if (!isLoading) {
             gsap.to(loaderRef.current, {
                 scale: 0.9,

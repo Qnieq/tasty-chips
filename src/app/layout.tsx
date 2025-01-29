@@ -3,7 +3,6 @@ import { Toaster } from 'sonner'
 import "./globals.css";
 import { chonburi, poppins } from "@/utils/fonts";
 import { MouseFollower } from "@/components/UI/mouse-follower/MouseFollower";
-import dynamic from "next/dynamic";
 import { LoadingProvider } from "@/lib/LoadingProvider";
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${chonburi} ${poppins}`}
+        className={`${chonburi} ${poppins} overflow-hidden`}
       >
         <LoadingProvider>
           {children}
