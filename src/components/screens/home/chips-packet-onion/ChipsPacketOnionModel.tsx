@@ -15,7 +15,7 @@ export function ChipsPacketOnionModel({ url, scrollY }: IChipsPacketModel) {
 
     const [modelPosition, setModelPosition] = useState({
         x: window.innerWidth >= 1440 ? -1.2 : -window.innerWidth / 1440 - 0.5,
-        y: window.innerWidth >= 1440 ? -2.1 : -window.innerWidth / 1440 - 2,
+        y: window.innerWidth >= 1440 ? -2.1 : -window.innerWidth / 1440 - 2.8,
         z: window.innerWidth >= 1440 ? 1 : (window.innerWidth / 1440) - 0.1
     })
 
@@ -94,7 +94,10 @@ export function ChipsPacketOnionModel({ url, scrollY }: IChipsPacketModel) {
                 ease: "power1.out",
             });
 
-            setModelPosition((val) => ({ ...val, x: window.innerWidth >= 1440 ? -1.2 : -window.innerWidth / 1440 - 0.5, y: -2.1 }))
+            setModelPosition((val) => ({
+                ...val,
+                x: window.innerWidth >= 1440 ? -1.2 : -window.innerWidth / 1440 - 0.5,
+            }))
 
             gsap.to(modelRef.current.position, {
                 x: modelPosition.x,
