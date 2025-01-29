@@ -3,34 +3,31 @@
 import { Header } from "@/components/shared/header/Header"
 import Image from "next/image";
 import { HomeHeroSection } from "@/components/screens/home/HomeHeroSection";
-import { SmoothScrolling } from "./SmoothScrolling";
 import { Statistic } from "@/components/screens/home/Statistic";
 import { Overview } from "@/components/screens/home/Overview";
 import { Titling } from "@/components/UI/titling/Titling";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { About } from "@/components/screens/home/About";
 import { Chips } from "@/components/screens/home/Chips";
 import { Footer } from "@/components/screens/home/Footer";
-import dynamic from "next/dynamic";
+import { ChipsPacketOnionScene } from "@/components/screens/home/chips-packet-onion/ChipsPacketOnionScene";
+import gsap from "gsap";
 
-const ChipsPacketOnionScene = dynamic(
-    () => import("@/components/screens/home/chips-packet-onion/ChipsPacketOnionScene").then((mod) => mod.ChipsPacketOnionScene),
-    { ssr: false }
-  );
 
 export function Home() {
 
-    const [isClient, setIsClient] = useState(false);
+    const titleRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-      setIsClient(true); // Ensures this runs only on the client
+        // Анимация появления при загрузке
+        gsap.fromTo(titleRef.current,
+            { y: "100px", opacity: 0 },
+            { y: "0px", opacity: 1, duration: 1, ease: "circ.out", delay: 6.2 }
+        );
     }, []);
-  
-    if (!isClient) return null;
 
     return (
         <>
-            <SmoothScrolling />
             <section className="flex flex-col items-center w-full h-[868px] bg-[#B1464A] overflow-hidden relative">
                 <Header />
                 <HomeHeroSection />
@@ -53,7 +50,7 @@ export function Home() {
                     />
                 </svg>
             </section>
-            <Titling text="World class awesome Chips" color="#b1464a" />
+            <Titling ref={titleRef} text="World class awesome Chips" color="#b1464a" />
             <div className="absolute top-5 w-full h-full z-1 pointer-events-none">
                 <Suspense fallback={<div>Loading</div>}>
                     <ChipsPacketOnionScene position="absolute" url="/models/chips-packet-onion.glb" />

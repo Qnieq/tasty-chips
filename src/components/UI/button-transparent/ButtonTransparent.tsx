@@ -1,3 +1,4 @@
+import { forwardRef } from "react"
 import { toast } from "sonner"
 
 interface IButtonTransparent {
@@ -10,30 +11,32 @@ interface IButtonTransparent {
     children: React.ReactNode
 }
 
-export function ButtonTransparent({ borderColor, children, paddingX, paddingY, textColor, width, height }: IButtonTransparent) {
+export const ButtonTransparent = forwardRef<HTMLButtonElement, IButtonTransparent>(
+    ({ borderColor, children, paddingX, paddingY, textColor, width, height }, ref) => {
 
-    const notification = () => {
-        toast.error(
-            "STOOP CLICKING!! You stupid potato, this pet project, what did you expect?"
-        )
-    }
+        const notification = () => {
+            toast.error(
+                "STOOP CLICKING!! You stupid potato, this pet project, what did you expect?"
+            )
+        }
 
-    return (
-        <button
-            style={{
-                borderColor: borderColor,
-                padding: `${paddingY} ${paddingX}`,
-                color: textColor,
-                width: width,
-                height: height
-            }}
-            className="
+        return (
+            <button
+                ref={ref}
+                style={{
+                    borderColor: borderColor,
+                    padding: `${paddingY} ${paddingX}`,
+                    color: textColor,
+                    width: width,
+                    height: height
+                }}
+                className="
                 flex items-center justify-center gap-[16px] 
                 font-poppins font-semibold border-2 
                 rounded-[10px]"
-            onClick={() => notification()}
-        >
-            {children}
-        </button>
-    );
-}
+                onClick={() => notification()}
+            >
+                {children}
+            </button>
+        );
+    })

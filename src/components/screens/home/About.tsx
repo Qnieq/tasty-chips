@@ -1,4 +1,5 @@
 import { GridWithMouseEffect } from "@/components/screens/home/grid-with-mouse-effect/GridWithMouseEffect";
+import { SpheresScene } from "@/components/shared/spheres/SpheresScene";
 import { Titling } from "@/components/UI/titling/Titling";
 import { useScroll } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -19,10 +20,6 @@ const texts = [
     },
 ]
 
-const SpheresScene = dynamic(
-    () => import("@/components/shared/spheres/SpheresScene").then((mod) => mod.SpheresScene),
-    { ssr: false }
-  );
 
 export function About() {
 

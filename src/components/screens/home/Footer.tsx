@@ -3,12 +3,7 @@ import gsap from "gsap";
 import { Titling } from "@/components/UI/titling/Titling";
 import { ButtonTransparent } from "@/components/UI/button-transparent/ButtonTransparent";
 import { ArrowRight } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const ChipsPacketBarbecueSceneOpen = dynamic(
-  () => import("./chips-packet-barbecue-open/ChipsPacketBarbecueSceneOpen").then((mod) => mod.ChipsPacketBarbecueSceneOpen),
-  { ssr: false }
-);
+import { ChipsPacketBarbecueSceneOpen } from "./chips-packet-barbecue-open/ChipsPacketBarbecueSceneOpen";
 
 export function Footer() {
     const [scrollY, setScrollY] = useState(0);

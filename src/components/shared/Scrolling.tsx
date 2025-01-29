@@ -36,3 +36,13 @@ export function SmoothScrolling({ delay }: ISmoothScrolling) {
 
     return null;
 }
+
+export function ScrollToTop() {
+    useEffect(() => {
+        window.scrollTo({
+            behavior: "instant",
+            top: 0
+        })
+    })
+    return null
+}

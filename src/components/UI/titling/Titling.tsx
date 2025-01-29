@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 interface ITitling {
     text: string;
     color: string;
-    font_family?: string
+    font_family?: "poppins" | "chonburi" 
     weight?: string
 }
 

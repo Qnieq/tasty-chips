@@ -34,7 +34,8 @@ export function ChipsPacketOnionScene({ url, position }: { url: string, position
     return (
         <Canvas camera={{ position: [0, 0, 5.7] }} id="chipsPacketOnionCanvas"
             style={{
-                position: position
+                position: position,
+                pointerEvents: 'none'
             }}>
             <ChipsPacketOnionLight />
             <ChipsPacketOnionModel url={url} scrollY={scrollY} />

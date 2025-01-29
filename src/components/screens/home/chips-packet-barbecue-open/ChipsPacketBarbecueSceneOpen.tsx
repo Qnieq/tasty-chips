@@ -1,7 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { CSSProperties, useEffect, useState } from "react";
-import * as THREE from "three"
-import gsap from "gsap";
 import { ChipsPacketBarbecueLightOpen } from "./ChipsPacketBarbecueLightOpen";
 import { ChipsPacketBarbecueModelOpen } from "./ChipsPacketBarbecueModelOpen";
 
@@ -14,7 +11,8 @@ export function ChipsPacketBarbecueSceneOpen({ url, calculatedScrollY }: IChipsP
     return (
         <Canvas camera={{ position: [0, 0, 10] }} id="chipsPacketBarbecueOpenCanvas"
             style={{
-                position: 'absolute'
+                position: 'absolute',
+                pointerEvents: 'none'
             }}>
             <ChipsPacketBarbecueLightOpen />
             <ChipsPacketBarbecueModelOpen url={url} scrollY={calculatedScrollY} />

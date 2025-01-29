@@ -1,6 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { CSSProperties, useEffect, useState } from "react";
-import * as THREE from "three"
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ChipsPacketBarbecueLightClose } from "./ChipsPacketBarbecueLightClose";
 import { ChipsPacketBarbecueModelClose } from "./ChipsPacketBarbecueModelClose";
