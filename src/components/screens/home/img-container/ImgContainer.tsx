@@ -35,7 +35,7 @@ export const ImgContainer = forwardRef<HTMLDivElement, IImgContainer>(({
             const model = modelRef.current;
 
             if (!imgContainer || !imgGroup) return;
-            console.log(currentScroll)
+
             const imgContainerWidth = imgContainer.offsetWidth;
             const imgGroupWidth = imgGroup.offsetWidth;
 
